@@ -17,7 +17,6 @@
     "@babel/preset-react": "^7.24.6",
     "@babel/preset-typescript": "^7.24.6",
     "@babel/register": "^7.24.6",
-    "@reduxjs/toolkit": "^2.2.5",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-typescript": "^11.1.6",
@@ -34,10 +33,6 @@
     "esbuild-loader": "^4.1.0",
     "html-webpack-plugin": "^5.6.0",
     "prettier": "^3.2.5",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "redux": "^5.0.1",
-    "redux-thunk": "^3.1.0",
     "rimraf": "^5.0.7",
     "rollup": "^4.18.0",
     "svg-url-loader": "^8.0.0",
@@ -52,7 +47,12 @@
     "webpack-dev-server": "^5.0.4"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-redux": "^9.1.2",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0",
     "reselect": "^5.1.0",
     "use-sync-external-store": "^1.2.2"
   },
