@@ -10,7 +10,7 @@ export default defineConfig({
     'react-dom',
     'use-sync-external-store/with-selector.js',
     'immer',
-    'reselect',
+    // 'reselect',
   ],
   input: 'src/index.ts',
   output: [{ file: 'dist/withRollup.js', format: 'esm' }],
