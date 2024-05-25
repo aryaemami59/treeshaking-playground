@@ -3,6 +3,8 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
+    "format": "prettier -w .",
+    "format:check": "prettier -c .",
     "clean": "rimraf dist",
     "build:esbuild": "esbuild src/index.js --bundle --outFile=dist/esbuild.js --platform=node --target=es2015 --format=esm",
     "build:rollup": "rollup -c rollup.config.mjs",
