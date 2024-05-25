@@ -19,7 +19,7 @@ const config = {
       }),
     ],
   },
-  entry: './src/index.js',
+  entry: './src/index.ts',
   mode: 'production',
   externals: {
     react: 'React',

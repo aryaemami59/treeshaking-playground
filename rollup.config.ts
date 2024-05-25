@@ -15,7 +15,7 @@ export default defineConfig({
     'immer',
     'reselect',
   ],
-  input: './src/index.js',
+  input: './src/index.ts',
   output: [{ file: './dist/rolluped.js', format: 'esm' }],
   plugins: [
     nodeResolve({}),
