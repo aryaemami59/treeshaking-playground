@@ -8,7 +8,7 @@
     "clean": "rimraf dist",
     "build:esbuild": "esbuild src/index.js --bundle --outFile=dist/esbuild.js --platform=node --target=es2015 --format=esm",
     "build:rollup": "rollup -c rollup.config.mjs",
-    "build:webpack": "webpack --config webpack.config.js",
+    "build:webpack": "NODE_OPTIONS=\"--import=tsx\" webpack --config webpack.config.ts",
     "build:vite": "vite build"
   },
   "devDependencies": {
