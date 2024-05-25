@@ -6,7 +6,7 @@
     "format": "prettier -w .",
     "format:check": "prettier -c .",
     "clean": "rimraf dist",
-    "build:esbuild": "esbuild src/index.ts --bundle --outFile=dist/esbuild.js --platform=node --target=es2015 --format=esm",
+    "build:esbuild": "yarn clean && tsx esbuild.config.ts",
     "build:rollup": "NODE_OPTIONS=\"--import=tsx\" rollup -c rollup.config.ts",
     "build:webpack": "NODE_OPTIONS=\"--import=tsx\" webpack --config webpack.config.ts",
     "build:vite": "vite build"
