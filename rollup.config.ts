@@ -5,9 +5,6 @@ import { defineConfig } from 'rollup'
 export default defineConfig({
   treeshake: true,
   experimentalLogSideEffects: true,
-
-  // external: ["react", "react-dom"],
-  // external: ["react", "react-dom", "use-sync-external-store/with-selector.js"],
   external: [
     'react',
     'react-dom',
@@ -15,11 +12,10 @@ export default defineConfig({
     'immer',
     'reselect',
   ],
-  input: './src/index.ts',
-  output: [{ file: './dist/rolluped.js', format: 'esm' }],
+  input: 'src/index.ts',
+  output: [{ file: 'dist/withRollup.js', format: 'esm' }],
   plugins: [
-    nodeResolve({}),
+    nodeResolve(),
     replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
   ],
-  // plugins: [nodeResolve({ exportConditions: ["require"] })],
 })

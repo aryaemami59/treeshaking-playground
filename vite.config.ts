@@ -4,6 +4,4 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react()],
   build: { minify: false, emptyOutDir: true },
-  // esbuild: { exclude: ["react", "react-dom"] },
-  // build: { lib: { entry: "src/index.ts", formats: ["es"] } },
 })

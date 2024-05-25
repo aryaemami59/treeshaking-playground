@@ -1,12 +1,8 @@
 import TerserPlugin from 'terser-webpack-plugin'
+import type { WebpackConfiguration } from 'webpack-dev-server'
 
-/**
- * @type {import('webpack-dev-server').WebpackConfiguration}
- */
 const config = {
   optimization: {
-    // sideEffects: "flag",
-    // sideEffects: true,
     sideEffects: false,
     minimizer: [
       new TerserPlugin({
@@ -30,8 +26,8 @@ const config = {
     library: { type: 'module' },
     libraryTarget: 'module',
     clean: true,
-    filename: './webpacked.js',
+    filename: 'withWebpack.js',
   },
-}
+} satisfies WebpackConfiguration
 
 export default config
