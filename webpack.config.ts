@@ -3,7 +3,6 @@ import type { WebpackConfiguration } from 'webpack-dev-server'
 
 const config = {
   optimization: {
-    sideEffects: false,
     minimizer: [
       new TerserPlugin({
         terserOptions: {
