@@ -7292,7 +7292,6 @@ __metadata:
     tslib: "npm:^2.6.2"
     tsx: "npm:^4.11.0"
     typescript: "npm:^5.4.5"
-    use-sync-external-store: "npm:^1.2.2"
     vite: "npm:^5.2.11"
     webpack: "npm:^5.91.0"
     webpack-cli: "npm:^5.1.4"
@@ -7477,7 +7476,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-sync-external-store@npm:^1.0.0, use-sync-external-store@npm:^1.2.2":
+"use-sync-external-store@npm:^1.0.0":
   version: 1.2.2
   resolution: "use-sync-external-store@npm:1.2.2"
   peerDependencies:
