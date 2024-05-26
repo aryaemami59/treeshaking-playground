@@ -21,6 +21,7 @@ const config = {
     react: 'React',
     'react-dom': 'ReactDOM',
   },
+  devtool: false,
   experiments: { outputModule: true },
   output: {
     library: { type: 'module' },
