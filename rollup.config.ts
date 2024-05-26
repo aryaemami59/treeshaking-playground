@@ -16,6 +16,9 @@ export default defineConfig({
   output: [{ file: 'dist/withRollup.js', format: 'esm' }],
   plugins: [
     nodeResolve(),
-    replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+      preventAssignment: true,
+    }),
   ],
 })
