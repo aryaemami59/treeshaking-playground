@@ -16,6 +16,8 @@ const config = {
   },
   entry: './src/index.ts',
   mode: 'production',
+  infrastructureLogging: { level: 'verbose' },
+  stats: 'verbose',
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
