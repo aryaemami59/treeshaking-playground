@@ -6,6 +6,7 @@ build({
   entryPoints: [{ in: 'src/index.ts', out: 'withEsbuild.js' }],
   outdir: 'dist',
   platform: 'node',
+  logLevel: 'verbose',
   format: 'esm',
   target: ['esnext'],
   treeShaking: true,
