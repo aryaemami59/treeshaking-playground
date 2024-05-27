@@ -11,6 +11,7 @@
     "build:webpack": "yarn clean && NODE_OPTIONS=--import=tsx webpack --config webpack.config.ts",
     "build:vite": "yarn clean && vite build",
     "build:all": "yarn build:esbuild && yarn build:rollup && yarn build:webpack && yarn build:vite",
+    "build:altogether": "yarn clean && tsx esbuild.config.ts && NODE_OPTIONS=--import=tsx rollup -c rollup.config.ts && NODE_OPTIONS=--import=tsx webpack --config webpack.config.ts && vite build"
   },
   "devDependencies": {
     "@babel/core": "^7.24.6",
