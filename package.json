@@ -7,9 +7,8 @@
     "format:check": "prettier -c .",
     "clean": "rimraf dist",
     "build:esbuild": "yarn clean && tsx esbuild.config.ts",
-    "build:rollup": "yarn clean && NODE_OPTIONS=\"--import=tsx\" rollup -c rollup.config.ts",
-    "build:webpack": "yarn clean && NODE_OPTIONS=\"--import=tsx\" webpack --config webpack.config.ts",
-    "build:vite": "yarn clean && vite build"
+    "build:rollup": "yarn clean && NODE_OPTIONS=--import=tsx rollup -c rollup.config.ts",
+    "build:webpack": "yarn clean && NODE_OPTIONS=--import=tsx webpack --config webpack.config.ts",
   },
   "devDependencies": {
     "@babel/core": "^7.24.6",
