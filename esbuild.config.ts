@@ -3,7 +3,7 @@ import { build } from 'esbuild'
 
 build({
   bundle: true,
-  entryPoints: ['src/index.ts'],
+  entryPoints: [{ in: 'src/index.ts', out: 'withEsbuild.js' }],
   outdir: 'dist',
   platform: 'node',
   format: 'esm',
