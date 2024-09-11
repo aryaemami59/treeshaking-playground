@@ -15,9 +15,11 @@ const config = {
     ],
   },
   entry: './src/index.ts',
+  // mode: 'development',
   mode: 'production',
-  infrastructureLogging: { level: 'verbose' },
-  stats: 'verbose',
+  // mode: 'none',
+  // infrastructureLogging: { level: 'verbose' },
+  // stats: 'verbose',
   externals: {
     react: 'React',
     'react-dom': 'ReactDOM',
@@ -26,7 +28,9 @@ const config = {
   experiments: { outputModule: true },
   output: {
     library: { type: 'module' },
+    // library: { type: 'commonjs-module' },
     libraryTarget: 'module',
+    // libraryTarget: 'commonjs-module',
     clean: true,
     filename: 'withWebpack.js',
   },
