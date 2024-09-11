@@ -7,15 +7,22 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "lib": ["DOM"],
+    "lib": ["DOM", "ESNext"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "noErrorTruncation": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
     "outDir": "./dist",
     "resolveJsonModule": true,
+    "rootDir": "./",
     "skipLibCheck": true,
     "sourceMap": true,
+    "strict": true,
     "target": "ESNext",
+    "useDefineForClassFields": true,
     "useUnknownInCatchVariables": true
-  }
+  },
+  "include": ["."]
 }
