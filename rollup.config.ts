@@ -1,9 +1,9 @@
-import commonjs from '@rollup/plugin-commonjs'
+import commonjsPlugin from '@rollup/plugin-commonjs'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
-import replace from '@rollup/plugin-replace'
+import replacePlugin from '@rollup/plugin-replace'
 import { defineConfig } from 'rollup'
 
-export default defineConfig({
+export default defineConfig((commandLineArguments) => ({
   treeshake: true,
   experimentalLogSideEffects: true,
   input: 'src/index.ts',
@@ -14,11 +14,12 @@ export default defineConfig({
     },
   ],
   plugins: [
-    commonjs({}),
-    nodeResolve({}),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify('production'),
+    commonjsPlugin(),
+    nodeResolve(),
+    replacePlugin({
+      values: { 'process.env.NODE_ENV': JSON.stringify('production') },
       preventAssignment: true,
     }),
   ],
-})
+  // ...commandLineArguments,
+}))

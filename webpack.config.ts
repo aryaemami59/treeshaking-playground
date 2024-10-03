@@ -1,4 +1,4 @@
-import TerserPlugin from 'terser-webpack-plugin'
+import TerserPlugin = require('terser-webpack-plugin')
 import type { WebpackConfiguration } from 'webpack-dev-server'
 
 const config = {
