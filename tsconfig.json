@@ -8,8 +8,9 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "lib": ["DOM", "ESNext"],
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "noEmit": true,
     "noErrorTruncation": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
@@ -22,7 +23,8 @@
     "strict": true,
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "useUnknownInCatchVariables": true
+    "useUnknownInCatchVariables": true,
+    "verbatimModuleSyntax": true
   },
   "include": ["."]
 }
