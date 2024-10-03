@@ -2,7 +2,7 @@
 
 import { exec as _exec } from 'node:child_process'
 import { mkdir, rm, writeFile } from 'node:fs/promises'
-import path from 'node:path'
+import * as path from 'node:path'
 import { promisify } from 'node:util'
 
 const exec = promisify(_exec)
