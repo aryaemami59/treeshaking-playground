@@ -1,19 +1,21 @@
-#!/usr/bin/env -vS node --import=tsx
+#!/usr/bin/env -vS node --import=tsx/esm
 
-import { exec as _exec } from 'node:child_process'
+import * as childProcess from 'node:child_process'
 import { mkdir, rm, writeFile } from 'node:fs/promises'
 import * as path from 'node:path'
 import { promisify } from 'node:util'
 
-const exec = promisify(_exec)
+const execFile = promisify(childProcess.execFile)
 
 const packageName = process.argv[2] ?? 'reselect'
 
 const manuallyExternalize = process.argv.slice(3)
 
-const packageJson = (await import(`${packageName}/package.json`, {
-  with: { type: 'json' },
-})) satisfies Record<string, any>
+const packageJson = (
+  await import(`${packageName}/package.json`, {
+    with: { type: 'json' },
+  })
+).default satisfies Record<string, any>
 
 const dependencies = Object.keys(packageJson?.dependencies ?? {})
 
@@ -25,20 +27,29 @@ const external = Array.from(
   new Set(dependencies.concat(peerDependencies).concat(manuallyExternalize)),
 )
 
-const inputDirectory = path.join('src', packageJson.name)
+const inputDirectory = path.join(
+  import.meta.dirname,
+  '..',
+  'src',
+  packageJson.name,
+)
 
-const allNamedImports = Object.keys(await import(packageJson.name))
+const outputDirectory = path.join(import.meta.dirname, '..', 'dist')
+
+const allNamedImports = Object.keys(await import(packageJson.name)).filter(
+  (namedImport) => namedImport !== 'default',
+)
+
+const cleanInputDirectory = async () => {
+  await rm(inputDirectory, { force: false, recursive: true })
+}
 
 const createInputDirectory = async () => {
   await mkdir(inputDirectory, { recursive: true })
 }
 
 const cleanOutputDirectory = async () => {
-  await rm('dist', { force: true, recursive: true })
-}
-
-const cleanInputDirectory = async () => {
-  await rm(inputDirectory, { force: false, recursive: true })
+  await rm(outputDirectory, { force: true, recursive: true })
 }
 
 const createInputFiles = async () =>
@@ -48,6 +59,7 @@ const createInputFiles = async () =>
         await writeFile(
           path.join(inputDirectory, `${namedImport}.mjs`),
           `export { ${namedImport} } from '${packageJson.name}';\n`,
+          { encoding: 'utf-8' },
         ),
     ),
   )
@@ -63,11 +75,21 @@ const createInputFiles = async () =>
 const createOutputFiles = async () =>
   await Promise.all(
     allNamedImports.map((namedImport) =>
-      exec(
+      execFile(
+        'yarn',
         // `yarn build:rollup --input ${inputDir}/${namedImport}.cts -d dist/@reduxjs/vitest-config --external ${Object.keys(
-        `yarn build:rollup --input ${inputDirectory}/${namedImport}.mjs -o dist/${packageJson.name}/${namedImport}.js -f esm --external ${external.join(
-          ',',
-        )}`,
+        [
+          'build:rollup',
+          '--input',
+          `${inputDirectory}/${namedImport}.mjs`,
+          '-o',
+          `dist/${packageJson.name}/${namedImport}.js`,
+          '-f',
+          'esm',
+          '--external',
+          `'${external.join(',')}'`,
+        ],
+        { encoding: 'utf-8', shell: true },
       ),
     ),
     // .concat(
@@ -77,9 +99,9 @@ const createOutputFiles = async () =>
     // ),
   )
 
-await createInputDirectory()
-
 await cleanOutputDirectory()
+
+await createInputDirectory()
 
 await createInputFiles()
 ;(await createOutputFiles()).forEach(({ stdout, stderr }) => {
