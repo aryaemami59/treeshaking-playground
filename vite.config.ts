@@ -1,7 +1,13 @@
 import viteReact from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-export default defineConfig({
+const viteConfig = defineConfig({
+  build: {
+    emptyOutDir: true,
+    minify: false,
+  },
+
   plugins: [viteReact()],
-  build: { minify: false, emptyOutDir: true },
 })
+
+export default viteConfig

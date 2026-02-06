@@ -4,11 +4,11 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 import replacePlugin from '@rollup/plugin-replace'
 import { defineConfig } from 'rollup'
 
-export default defineConfig((commandLineArguments) => [
+const rollupConfig = defineConfig((commandLineArguments) => [
   {
-    treeshake: true,
     experimentalLogSideEffects: true,
     input: 'src/index.ts',
+    treeshake: true,
     output: [
       {
         inlineDynamicImports: true,
@@ -28,3 +28,5 @@ export default defineConfig((commandLineArguments) => [
     // ...commandLineArguments,
   },
 ])
+
+export default rollupConfig

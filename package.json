@@ -1,19 +1,12 @@
 {
-  "name": "treeshaking-playground",
-  "sideEffects": false,
-  "type": "module",
-  "scripts": {
-    "format": "prettier -w .",
-    "format:check": "prettier -c .",
-    "clean": "rimraf dist",
-    "build:esbuild": "yarn clean && tsx esbuild.config.ts",
-    "build:rollup": "rollup --config rollup.config.ts --configPlugin 'typescript={outputToFilesystem:false,'tsconfig':\"tsconfig.build.json\"}'",
-    "build:webpack": "yarn clean && NODE_OPTIONS=--import=tsx webpack --config webpack.config.ts",
-    "build:vite": "yarn clean && vite build",
-    "build:all": "yarn build:esbuild && yarn build:rollup && yarn build:webpack && yarn build:vite",
-    "build:altogether": "yarn clean && tsx esbuild.config.ts && NODE_OPTIONS=--import=tsx rollup -c rollup.config.ts && NODE_OPTIONS=--import=tsx webpack --config webpack.config.ts && vite build",
-    "test": "env ./scripts/everyImport.mts",
-    "start": "NODE_OPTIONS=--import='tsx/esm' node scripts/everyImport.mts"
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.11.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0",
+    "reselect": "^5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
@@ -55,14 +48,22 @@
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.3"
   },
-  "dependencies": {
-    "@reduxjs/toolkit": "^2.11.2",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-redux": "^9.2.0",
-    "redux": "^5.0.1",
-    "redux-thunk": "^3.1.0",
-    "reselect": "^5.1.1"
+  "name": "treeshaking-playground",
+  "packageManager": "yarn@4.12.0",
+  "scripts": {
+    "build:all": "yarn build:esbuild && yarn build:rollup && yarn build:webpack && yarn build:vite",
+    "build:altogether": "yarn run clean && tsx esbuild.config.ts && NODE_OPTIONS=--import=tsx rollup -c rollup.config.ts && NODE_OPTIONS=--import=tsx webpack --config webpack.config.ts && vite build",
+    "build:esbuild": "yarn run clean && tsx esbuild.config.ts",
+    "build:rollup": "rollup --config rollup.config.ts --configPlugin 'typescript={outputToFilesystem:false,'tsconfig':\"tsconfig.build.json\"}'",
+    "build:vite": "yarn run clean && vite build",
+    "build:webpack": "yarn run clean && NODE_OPTIONS=--import=tsx webpack --config webpack.config.ts",
+    "clean": "rimraf dist/",
+    "format": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mts --write $INIT_CWD",
+    "format-check": "prettier --ignore-path=$PROJECT_CWD/.gitignore --config=$PROJECT_CWD/prettier.config.mts --check $INIT_CWD",
+    "start": "NODE_OPTIONS=--import='tsx/esm' node scripts/everyImport.mts",
+    "test": "env ./scripts/everyImport.mts",
+    "typecheck": "tsc -p $INIT_CWD/tsconfig.json --noEmit"
   },
-  "packageManager": "yarn@4.12.0"
+  "sideEffects": false,
+  "type": "module"
 }

@@ -1,7 +1,7 @@
-import TerserPlugin = require('terser-webpack-plugin')
+import TerserPlugin from 'terser-webpack-plugin'
 import type { WebpackConfiguration } from 'webpack-dev-server'
 
-const config = {
+const webpackConfig = {
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -34,6 +34,6 @@ const config = {
     clean: true,
     filename: 'withWebpack.js',
   },
-} satisfies WebpackConfiguration
+} as const satisfies WebpackConfiguration
 
-export default config
+export default webpackConfig
